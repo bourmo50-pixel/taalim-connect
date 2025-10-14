@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الإعلانات المدرسية | Taalim Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>📢 الإعلانات المدرسية</h1>
+    <p>تابع آخر المستجدات والأنشطة في مؤسستك 🏫</p>
+  </header>
+
+  <main class="announcements-page">
+    <section>
+      <h2>إضافة إعلان جديد (خاصة بالإدارة أو الأستاذ)</h2>
+      <form id="announce-form">
+        <label>عنوان الإعلان:</label>
+        <input type="text" id="announce-title" required>
+
+        <label>نص الإعلان:</label>
+        <textarea id="announce-text" rows="4" required></textarea>
+
+        <button type="submit">نشر الإعلان 📢</button>
+      </form>
+    </section>
+
+    <section id="announce-list">
+      <h2>📋 الإعلانات الحالية</h2>
+      <ul id="announce-items"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Taalim Connect | مراد 💡</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("announce-form");
+    const list = document.getElementById("announce-items");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("announce-title").value;
+      const text = document.getElementById("announce-text").value;
+
+      const li = document.createElement("li");
+      li.innerHTML = <strong>${title}</strong>: ${text};
+      list.prepend(li); // يخلي الإعلان الجديد يطلع في الأعلى
+
+      form.reset();
+      alert("✅ تم نشر الإعلان بنجاح!");
+    });
+  </script>
+
+</body>
+</html>

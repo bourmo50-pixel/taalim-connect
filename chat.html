@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>التواصل | Taalim Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chat-container {
+      width: 80%;
+      margin: 20px auto;
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #messages {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      background: #fff;
+    }
+    .msg {
+      margin: 10px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #e6f0ff;
+      width: fit-content;
+    }
+    .msg.me {
+      background: #d1ffd1;
+      margin-left: auto;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    input, button {
+      font-size: 16px;
+      padding: 8px;
+    }
+    input {
+      flex: 1;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>💬 التواصل بين التلاميذ والأساتذة</h1>
+    <p>شارك الأسئلة، الأفكار، والتمارين مع الآخرين 🤝</p>
+  </header>
+
+  <main>
+    <div class="chat-container">
+      <div id="messages"></div>
+
+      <form id="chat-form">
+        <input type="text" id="username" placeholder="اسمك..." required>
+        <input type="text" id="message" placeholder="اكتب رسالتك..." required>
+        <button type="submit">إرسال 📩</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Taalim Connect | مراد 💡</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("chat-form");
+    const messages = document.getElementById("messages");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const msg = document.getElementById("message").value.trim();
+
+      if (msg === "" || username === "") return;
+
+      const div = document.createElement("div");
+      div.classList.add("msg", "me");
+      div.innerHTML = <strong>${username}:</strong> ${msg};
+      messages.appendChild(div);
+
+      // تنظيف الخانة ديال الكتابة
+      document.getElementById("message").value = "";
+
+      // باش تبان الرسالة الأخيرة مباشرة
+      messages.scrollTop = messages.scrollHeight;
+    });
+  </script>
+
+</body>
+</html>

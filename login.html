@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | Taalim Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <img src="logo.png" alt="شعار التطبيق" class="logo">
+      <h1>🎓 Taalim Connect</h1>
+      <h3>تسجيل الدخول</h3>
+
+      <!-- تسجيل دخول التلميذ -->
+      <form id="student-form">
+        <input type="text" id="studentMassar" placeholder="رقم المسار" required>
+        <input type="password" id="studentPass" placeholder="كلمة السر" required>
+        <button type="submit">دخول التلميذ 🔐</button>
+      </form>
+      <p id="message"></p>
+
+      <hr style="margin:20px 0;">
+
+      <!-- زر اختيار الدور للأستاذ أو الإدارة -->
+      <button id="roleBtn">تسجيل دخول الأستاذ / الإدارة</button>
+    </div>
+  </div>
+
+  <script>
+    const studentForm = document.getElementById("student-form");
+    const message = document.getElementById("message");
+
+    // بيانات تجريبية للتلاميذ
+    const students = [
+      { massar: "M1234567", pass: "1234" },
+      { massar: "M7654321", pass: "abcd" }
+    ];
+
+    studentForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      const massar = document.getElementById("studentMassar").value.trim();
+      const pass = document.getElementById("studentPass").value.trim();
+      const student = students.find(s => s.massar === massar && s.pass === pass);
+
+      if(student){
+        message.style.color = "green";
+        message.textContent = "✅ تسجيل الدخول ناجح! جاري التوجيه...";
+        setTimeout(() => {
+          window.location.href = "student.html";
+        }, 1000);
+      } else {
+        message.style.color = "red";
+        message.textContent = "❌ رقم المسار أو كلمة السر غير صحيحة.";
+      }
+    });
+
+    // زر اختيار الدور للأستاذ أو الإدارة
+    document.getElementById("roleBtn").addEventListener("click", function(){
+      const role = prompt("اكتب الدور: teacher للأستاذ / admin للإدارة");
+      if(role === "teacher") window.location.href = "teacher.html";
+      else if(role === "admin") window.location.href = "admin.html";
+      else alert("دور غير صحيح");
+    });
+  </script>
+</body>
+</html>

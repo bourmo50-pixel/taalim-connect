@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الأستاذ | Taalim Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>👨‍🏫 صفحة الأستاذ</h1>
+    <p>شارك الدروس، الفروض أو التمارين مع التلاميذ ✏</p>
+  </header>
+
+  <main class="teacher-page">
+    <section>
+      <h2>إضافة درس جديد 📚</h2>
+      <form id="lesson-form">
+        <label>عنوان الدرس:</label>
+        <input type="text" id="title" required>
+
+        <label>الوصف:</label>
+        <textarea id="description" rows="4" required></textarea>
+
+        <label>رفع ملف (PDF, DOCX, صورة...):</label>
+        <input type="file" id="file">
+
+        <button type="submit">نشر الدرس ✅</button>
+      </form>
+    </section>
+
+    <section id="lessons-list">
+      <h2>📋 الدروس المنشورة</h2>
+      <ul id="lesson-items"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Taalim Connect | مراد 💡</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("lesson-form");
+    const list = document.getElementById("lesson-items");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const desc = document.getElementById("description").value;
+
+      const li = document.createElement("li");
+      li.innerHTML = <strong>${title}</strong>: ${desc} ;
+      list.appendChild(li);
+
+      form.reset();
+      alert("تم نشر الدرس بنجاح 🎉");
+    });
+  </script>
+
+</body>
+</html>
